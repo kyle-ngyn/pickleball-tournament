@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Bracket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #0a0a0a;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .bracket {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 100px;
+        }
+        .round {
+            display: flex;
+            flex-direction: column;
+            width: 280px;
+        }
+        .round-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            padding-bottom: 8px;
+            border-bottom: 2px solid white;
+        }
+        .match-wrapper {
+            position: relative;
+            margin: 20px 0;
+        }
+        /* Increase spacing between match pairs */
+        .match-wrapper:nth-child(2) {
+            margin-bottom: 100px;
+        }
+        .match-wrapper:nth-child(4) {
+            margin-top: 100px;
+        }
+        .match {
+            background-color: #1a1a1a;
+            border-radius: 4px;
+            padding: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        .team {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            color: #888;
+        }
+        .team.filled {
+            color: white;
+        }
+        .team-score {
+            margin-left: auto;
+            font-weight: bold;
+        }
+        .match-status {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            text-align: center;
+        }
+        .match-time {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30px;
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+        }
+        /* Updated connector styles */
+        .connector-group {
+            position: absolute;
+            right: -100px;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+        }
+        .connector-vertical {
+            position: absolute;
+            right: 30px;
+            width: 2px;
+            background-color: white;
+        }
+        .connector-horizontal {
+            position: absolute;
+            right: 0;
+            height: 2px;
+            background-color: white;
+        }
+        /* First pair of matches connector */
+        .match-pair-1 .connector-vertical {
+            top: 45px;
+            height: 190px;
+        }
+        .match-pair-1 .connector-horizontal {
+            top: 140px;
+            width: 70px;
+        }
+        /* Second pair of matches connector */
+        .match-pair-2 .connector-vertical {
+            top: 345px;
+            height: 190px;
+        }
+        .match-pair-2 .connector-horizontal {
+            top: 440px;
+            width: 70px;
+        }
+        /* Semifinals connectors */
+        .semifinals-connector .connector-vertical {
+            top: 45px;
+            height: 390px;
+        }
+        .semifinals-connector .connector-horizontal {
+            top: 240px;
+            width: 70px;
+        }
+        .nav-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .nav-link a {
+            color: #ff4500;
+            text-decoration: none;
+        }
+        .nav-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bracket">
+            <div class="round">
+                <div class="round-title">QUARTERFINALS</div>
+
+                <div class="match-pair-1">
+                    <div class="match-wrapper">
+                        <div class="match">
+                            <div class="team filled">
+                                Team Alpha
+                                <span class="team-score">0</span>
+                            </div>
+                            <div class="team">
+                                TBD
+                                <span class="team-score">-</span>
+                            </div>
+                        </div>
+                        <div class="match-status">MATCH PENDING</div>
+                    </div>
+
+                    <div class="match-wrapper">
+                        <div class="match">
+                            <div class="team">
+                                TBD
+                                <span class="team-score">-</span>
+                            </div>
+                            <div class="team">
+                                TBD
+                                <span class="team-score">-</span>
+                            </div>
+                        </div>
+                        <div class="match-status">MATCH PENDING</div>
+                    </div>
+
+                    <div class="connector-group">
+                        <div class="connector-vertical"></div>
+                        <div class="connector-horizontal"></div>
+                    </div>
+                </div>
+
+                <div class="match-pair-2">
+                    <div class="match-wrapper">
+                        <div class="match">
+                            <div class="team filled">
+                                Team Delta
+                                <span class="team-score">3</span>
+                            </div>
+                            <div class="team filled">
+                                Team Echo
+                                <span class="team-score">1</span>
+                            </div>
+                        </div>
+                        <div class="match-status">MATCH COMPLETE</div>
+                    </div>
+
+                    <div class="match-wrapper">
+                        <div class="match">
+                            <div class="team">
+                                TBD
+                                <span class="team-score">-</span>
+                            </div>
+                            <div class="team">
+                                TBD
+                                <span class="team-score">-</span>
+                            </div>
+                        </div>
+                        <div class="match-status">MATCH PENDING</div>
+                    </div>
+
+                    <div class="connector-group">
+                        <div class="connector-vertical"></div>
+                        <div class="connector-horizontal"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="round">
+                <div class="round-title">SEMIFINALS</div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team">
+                            TBD
+                            <span class="team-score">-</span>
+                        </div>
+                        <div class="team">
+                            TBD
+                            <span class="team-score">-</span>
+                        </div>
+                    </div>
+                    <div class="match-status">MATCH PENDING</div>
+                    <div class="match-time">SUNDAY, FEB 18 AT 2:00 PM</div>
+                </div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team filled">
+                            Team Delta
+                            <span class="team-score">0</span>
+                        </div>
+                        <div class="team">
+                            TBD
+                            <span class="team-score">-</span>
+                        </div>
+                    </div>
+                    <div class="match-status">MATCH PENDING</div>
+                    <div class="match-time">SUNDAY, FEB 18 AT 4:00 PM</div>
+                </div>
+
+                <div class="connector-group semifinals-connector">
+                    <div class="connector-vertical"></div>
+                    <div class="connector-horizontal"></div>
+                </div>
+            </div>
+
+            <div class="round">
+                <div class="round-title">FINALS</div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team">
+                            TBD
+                            <span class="team-score">-</span>
+                        </div>
+                        <div class="team">
+                            TBD
+                            <span class="team-score">-</span>
+                        </div>
+                    </div>
+                    <div class="match-status">MATCH PENDING</div>
+                    <div class="match-time">SUNDAY, FEB 18 AT 6:00 PM</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-link">
+            <a href="signup.html">Register for Tournament</a>
+        </div>
+    </div>
+</body>
+</html>
