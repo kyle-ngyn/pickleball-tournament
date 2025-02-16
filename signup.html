@@ -9,21 +9,44 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+        }
+        .racket {
+            width: 500px;
+            position: relative;
+            padding-bottom: 200px;
+        }
+        .racket::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 200px;
+            background: linear-gradient(to bottom, #333, #222);
+            border-radius: 10px;
         }
         .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: #fff;
+            background: linear-gradient(135deg, #1a1a1a 0%, #1a1a1a 60%, #86b817 100%);
+            border-radius: 20px;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(134, 184, 23, 0.2);
+            position: relative;
+            z-index: 1;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: white;
             margin-bottom: 30px;
+            font-size: 28px;
+            line-height: 1.2;
         }
         form {
             display: flex;
@@ -31,35 +54,44 @@
         }
         label {
             margin-top: 15px;
-            color: #555;
+            color: #86b817;
+            font-weight: bold;
         }
         input {
             padding: 12px;
             margin-top: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #333;
             border-radius: 4px;
             font-size: 16px;
+            background-color: #222;
+            color: white;
+        }
+        input:focus {
+            outline: none;
+            border-color: #86b817;
+            box-shadow: 0 0 5px rgba(134, 184, 23, 0.3);
         }
         button {
             margin-top: 25px;
             padding: 12px;
-            background-color: #ff4500;
+            background-color: #86b817;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
+            transition: background-color 0.2s;
         }
         button:hover {
-            background-color: #ff5722;
+            background-color: #9ed321;
         }
         .nav-link {
             text-align: center;
             margin-top: 20px;
         }
         .nav-link a {
-            color: #ff4500;
+            color: #86b817;
             text-decoration: none;
         }
         .nav-link a:hover {
@@ -68,22 +100,24 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Pickleball Tournament Sign-up</h1>
-        <form id="signupForm">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
+    <div class="racket">
+        <div class="container">
+            <h1>Pickleball Tournament<br>Sign-up</h1>
+            <form id="signupForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
 
-            <button type="submit">Register for Tournament</button>
-        </form>
-        <div class="nav-link">
-            <a href="bracket.html">View Tournament Bracket</a>
+                <button type="submit">Register for Tournament</button>
+            </form>
+            <div class="nav-link">
+                <a href="bracket.html">View Tournament Bracket</a>
+            </div>
         </div>
     </div>
 

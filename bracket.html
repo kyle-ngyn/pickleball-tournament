@@ -21,7 +21,7 @@
             display: flex;
             justify-content: space-between;
             margin-top: 40px;
-            gap: 100px;
+            gap: 120px;
         }
         .round {
             display: flex;
@@ -31,34 +31,32 @@
         .round-title {
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             color: white;
             padding-bottom: 8px;
-            border-bottom: 2px solid white;
+            border-bottom: 2px solid #86b817;
         }
         .match-wrapper {
             position: relative;
-            margin: 20px 0;
-        }
-        /* Increase spacing between match pairs */
-        .match-wrapper:nth-child(2) {
-            margin-bottom: 100px;
-        }
-        .match-wrapper:nth-child(4) {
-            margin-top: 100px;
+            margin: 0 0 60px 0;
         }
         .match {
             background-color: #1a1a1a;
             border-radius: 4px;
-            padding: 10px;
+            padding: 12px;
             position: relative;
             z-index: 2;
+            border: 1px solid #333;
+        }
+        .match:hover {
+            border-color: #86b817;
         }
         .team {
             display: flex;
             align-items: center;
             padding: 8px;
             color: #888;
+            font-size: 16px;
         }
         .team.filled {
             color: white;
@@ -66,75 +64,66 @@
         .team-score {
             margin-left: auto;
             font-weight: bold;
-        }
-        .match-status {
-            font-size: 12px;
-            color: #666;
-            margin-top: 8px;
-            text-align: center;
+            color: #86b817;
         }
         .match-time {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            right: 0;
+            text-align: center;
             bottom: -30px;
             font-size: 12px;
             color: #666;
-            white-space: nowrap;
         }
-        /* Updated connector styles */
         .connector-group {
             position: absolute;
-            right: -100px;
+            right: -120px;
             top: 0;
             bottom: 0;
-            width: 100px;
+            width: 120px;
         }
         .connector-vertical {
             position: absolute;
             right: 30px;
             width: 2px;
-            background-color: white;
+            background-color: #86b817;
         }
         .connector-horizontal {
             position: absolute;
             right: 0;
             height: 2px;
-            background-color: white;
+            background-color: #86b817;
         }
-        /* First pair of matches connector */
         .match-pair-1 .connector-vertical {
             top: 45px;
             height: 190px;
         }
         .match-pair-1 .connector-horizontal {
             top: 140px;
-            width: 70px;
+            width: 90px;
         }
-        /* Second pair of matches connector */
         .match-pair-2 .connector-vertical {
             top: 345px;
             height: 190px;
         }
         .match-pair-2 .connector-horizontal {
             top: 440px;
-            width: 70px;
+            width: 90px;
         }
-        /* Semifinals connectors */
         .semifinals-connector .connector-vertical {
             top: 45px;
             height: 390px;
         }
         .semifinals-connector .connector-horizontal {
             top: 240px;
-            width: 70px;
+            width: 90px;
         }
         .nav-link {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 40px;
         }
         .nav-link a {
-            color: #ff4500;
+            color: #86b817;
             text-decoration: none;
         }
         .nav-link a:hover {
@@ -160,7 +149,7 @@
                                 <span class="team-score">-</span>
                             </div>
                         </div>
-                        <div class="match-status">MATCH PENDING</div>
+                        <div class="match-time">SATURDAY, FEB 17 AT 2:00 PM</div>
                     </div>
 
                     <div class="match-wrapper">
@@ -174,7 +163,7 @@
                                 <span class="team-score">-</span>
                             </div>
                         </div>
-                        <div class="match-status">MATCH PENDING</div>
+                        <div class="match-time">SATURDAY, FEB 17 AT 2:00 PM</div>
                     </div>
 
                     <div class="connector-group">
@@ -195,7 +184,7 @@
                                 <span class="team-score">1</span>
                             </div>
                         </div>
-                        <div class="match-status">MATCH COMPLETE</div>
+                        <div class="match-time">SATURDAY, FEB 17 AT 4:00 PM</div>
                     </div>
 
                     <div class="match-wrapper">
@@ -209,7 +198,7 @@
                                 <span class="team-score">-</span>
                             </div>
                         </div>
-                        <div class="match-status">MATCH PENDING</div>
+                        <div class="match-time">SATURDAY, FEB 17 AT 2:00 PM</div>
                     </div>
 
                     <div class="connector-group">
@@ -233,7 +222,6 @@
                             <span class="team-score">-</span>
                         </div>
                     </div>
-                    <div class="match-status">MATCH PENDING</div>
                     <div class="match-time">SUNDAY, FEB 18 AT 2:00 PM</div>
                 </div>
 
@@ -248,7 +236,6 @@
                             <span class="team-score">-</span>
                         </div>
                     </div>
-                    <div class="match-status">MATCH PENDING</div>
                     <div class="match-time">SUNDAY, FEB 18 AT 4:00 PM</div>
                 </div>
 
@@ -272,7 +259,6 @@
                             <span class="team-score">-</span>
                         </div>
                     </div>
-                    <div class="match-status">MATCH PENDING</div>
                     <div class="match-time">SUNDAY, FEB 18 AT 6:00 PM</div>
                 </div>
             </div>
