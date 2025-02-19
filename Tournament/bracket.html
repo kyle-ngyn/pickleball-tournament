@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Bracket</title>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 300% 300%;
+            animation: gradient 20s ease infinite;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 850px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .bracket {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            gap: 60px;
+        }
+
+        .round {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .round-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .match-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .match {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            position: relative;
+            z-index: 2;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .match:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .team.filled {
+            color: white;
+        }
+
+        .team.winner {
+            background-color: rgba(35, 213, 171, 0.3);
+            border-radius: 8px;
+        }
+
+        .team-score {
+            margin-left: auto;
+            font-weight: bold;
+            color: #23d5ab;
+        }
+
+        .match-time {
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            bottom: -25px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .connector {
+            display: none;
+        }
+
+        .nav-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .nav-link a {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .nav-link a:hover {
+            transform: scale(1.02);
+        }
+
+        .first-match {
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px;
+            }
+
+            .bracket {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 40px;
+            }
+
+            .round {
+                width: 280px;
+            }
+
+            .connector {
+                display: block;
+                position: absolute;
+                right: -40px;
+                width: 40px;
+                height: 2px;
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .connector::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                height: 120px;
+                width: 2px;
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .connector-top {
+                top: 50%;
+            }
+
+            .connector-bottom {
+                bottom: 50%;
+            }
+
+            .connector-bottom::after {
+                bottom: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .bracket {
+                gap: 80px;
+            }
+
+            .connector {
+                right: -60px;
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bracket">
+            <div class="round" id="quarterfinals">
+                <div class="round-title">QUARTERFINALS</div>
+
+                <div class="match-wrapper first-match">
+                    <div class="match">
+                        <div class="team filled winner">
+                            Team Alpha
+                            <span class="team-score">3</span>
+                        </div>
+                        <div class="team filled">
+                            Team Beta
+                            <span class="team-score">1</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SATURDAY, FEB 17 AT 2:00 PM</div>
+                    <div class="connector connector-top"></div>
+                </div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team filled winner">
+                            Team Charlie
+                            <span class="team-score">3</span>
+                        </div>
+                        <div class="team filled">
+                            Team Delta
+                            <span class="team-score">2</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SATURDAY, FEB 17 AT 2:00 PM</div>
+                    <div class="connector connector-bottom"></div>
+                </div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team filled winner">
+                            Team Echo
+                            <span class="team-score">3</span>
+                        </div>
+                        <div class="team filled">
+                            Team Foxtrot
+                            <span class="team-score">0</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SATURDAY, FEB 17 AT 4:00 PM</div>
+                    <div class="connector connector-top"></div>
+                </div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team filled">
+                            Team Golf
+                            <span class="team-score">2</span>
+                        </div>
+                        <div class="team filled winner">
+                            Team Hotel
+                            <span class="team-score">3</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SATURDAY, FEB 17 AT 4:00 PM</div>
+                    <div class="connector connector-bottom"></div>
+                </div>
+            </div>
+
+            <div class="round" id="semifinals">
+                <div class="round-title">SEMIFINALS</div>
+
+                <div class="match-wrapper first-match">
+                    <div class="match">
+                        <div class="team filled winner">
+                            Team Alpha
+                            <span class="team-score">3</span>
+                        </div>
+                        <div class="team filled">
+                            Team Charlie
+                            <span class="team-score">1</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SUNDAY, FEB 18 AT 2:00 PM</div>
+                    <div class="connector connector-top"></div>
+                </div>
+
+                <div class="match-wrapper">
+                    <div class="match">
+                        <div class="team filled winner">
+                            Team Echo
+                            <span class="team-score">3</span>
+                        </div>
+                        <div class="team filled">
+                            Team Hotel
+                            <span class="team-score">2</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SUNDAY, FEB 18 AT 4:00 PM</div>
+                    <div class="connector connector-bottom"></div>
+                </div>
+            </div>
+
+            <div class="round" id="finals">
+                <div class="round-title">FINALS</div>
+
+                <div class="match-wrapper first-match">
+                    <div class="match">
+                        <div class="team filled winner">
+                            Team Alpha
+                            <span class="team-score">3</span>
+                        </div>
+                        <div class="team filled">
+                            Team Echo
+                            <span class="team-score">1</span>
+                        </div>
+                    </div>
+                    <div class="match-time">SUNDAY, FEB 18 AT 6:00 PM</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-link">
+            <a href="../Sign-up/signup.html">Register for Tournament</a>
+            <a href="../Tournament/results.html" style="margin-left: 20px;">See Results</a>
+        </div>
+    </div>
+
+    <script>
+        function setSpacing(element, spacing) {
+            if (typeof spacing === 'number') {
+                element.style.marginTop = `${spacing}px`;
+            } else if (typeof spacing === 'string') {
+                element.style.marginTop = spacing;
+            }
+        }
+
+        function adjustSpacing(roundId, spacing) {
+            const round = document.getElementById(roundId);
+            const matches = round.querySelectorAll('.match-wrapper');
+
+            matches.forEach((match, index) => {
+                if (index > 0) {
+                    setSpacing(match, spacing);
+                }
+            });
+        }
+
+        function adjustFirstMatchSpacing(roundId, spacing) {
+            const round = document.getElementById(roundId);
+            const firstMatch = round.querySelector('.first-match');
+            if (firstMatch) {
+                setSpacing(firstMatch, spacing);
+            }
+        }
+
+        // Example usage:
+        // Adjust spacing between matches
+        adjustSpacing('quarterfinals', "10%");
+        adjustSpacing('semifinals', "62%");
+
+        // Adjust spacing after the round titles
+        adjustFirstMatchSpacing('quarterfinals', '10%');
+        adjustFirstMatchSpacing('semifinals', '40%');
+        adjustFirstMatchSpacing('finals', "95%");
+    </script>
+</body>
+</html>
+

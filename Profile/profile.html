@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 300% 300%;
+            animation: gradient 20s ease infinite;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .profile-picture:hover {
+            opacity: 0.8;
+        }
+
+        .profile-details h2 {
+            margin: 0 0 10px 0;
+        }
+
+        .profile-details p {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.02);
+        }
+
+        .logout-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>My Profile</h1>
+            <a href="#" class="button logout-button" onclick="logout()">Logout</a>
+        </div>
+
+        <div class="profile-info">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture" id="profilePicture" onclick="document.getElementById('fileInput').click();">
+            <input type="file" id="fileInput" accept="image/*" onchange="updateProfilePicture(this)">
+            <div class="profile-details">
+                <h2 id="playerName">John Doe</h2>
+                <p>Phone: <span id="phoneNumber">+1 (555) 123-4567</span></p>
+                <p>Tournaments Played: 5</p>
+                <p>Wins: 3</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <a href="../Tournament/bracket.html" class="button">View Tournament Bracket</a>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            alert('Logged out successfully');
+            // Implement actual logout logic here
+            window.location.href = '../Sign-up/signup.html';
+        }
+
+        function updateProfilePicture(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicture').src = e.target.result;
+                    // Implement actual save logic here
+                    alert('Profile picture updated successfully');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
